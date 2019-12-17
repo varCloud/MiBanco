@@ -8,8 +8,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiSocio {
 
     private static Retrofit retrofit = null;
+    private static String local = "http://192.168.20.142:/";
+    private static String Prod = "http://192.168.98.54:5555/ApiSocio/";//cmv8046
 
-    static Retrofit getClient() {
+   public static Retrofit getClient() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -17,7 +19,7 @@ public class ApiSocio {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://reqres.in")
+                .baseUrl(Prod)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
