@@ -1,9 +1,16 @@
 package com.example.mibanco.ws.apiSocio;
 
-import retrofit2.http.GET;
+import com.example.mibanco.Entidades.Request.RequestValidarNumero;
+import com.example.mibanco.Entidades.Response.Response;
+import com.example.mibanco.Entidades.ValidaNumero;
+
+import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
 public interface ISocio {
-    //@GET("/api/unknown")
-    //Call<MultipleResource> doGetListResources();
+
+    @POST("api/Socio/ValidaNumero")
+    Call<Response<ValidaNumero>> ValidaNumero(@Body RequestValidarNumero request);
 
 }
