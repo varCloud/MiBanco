@@ -4,29 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Vistas.Splash"
-    android:background="#222">
+    tools:context=".Vistas.Splash">
 
 
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="200dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="65dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_solo_blanco" />
 
-    <ImageView
-        android:id="@+id/imgLetrasLogo"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/letras_blanco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgLogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
