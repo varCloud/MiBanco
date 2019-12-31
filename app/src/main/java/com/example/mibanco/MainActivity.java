@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity
                                          }catch (Exception ex){
                                              Log.d("",ex.getMessage());
                                          }
-
                                      }
                                  }
 
