@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Vistas.Bienvenida"
+    android:background="@drawable/background_degradado">
+
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_solo_blanco"
+        android:transitionName="logoTransition"
+        />
+
+    <ImageView
+        android:id="@+id/imgLetrasLogo"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="230dp"
+        android:background="@drawable/letras_blanco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgLogo"
+        android:transitionName="letrasLogoTransition"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgLetrasLogo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <Button
+            android:id="@+id/btnIniciarSesion"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_border_blanco"
+            android:padding="10dp"
+            android:text="Iniciar sesión"
+            android:textColor="#fff"
+            android:alpha="0"
+            android:onClick="GoIniciarSesion"
+            android:transitionName="btnSesionTransition"
+            />
+
+        <Button
+            android:id="@+id/btnToken"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_border_blanco"
+            android:padding="10dp"
+            android:text="Token virtual"
+            android:textColor="#fff"
+            android:alpha="0"
+            android:onClick="GoToken"
+            android:transitionName="btnTokenTransition"
+            />
+
+        <TextView
+            android:id="@+id/txtRegistrarse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Registrarse"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:alpha="0"
+            android:transitionName="txtRegistrarTransition"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

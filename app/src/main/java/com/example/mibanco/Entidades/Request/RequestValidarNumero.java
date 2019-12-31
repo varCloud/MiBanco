@@ -29,4 +29,6 @@ public class RequestValidarNumero {
         NumeroSocio = numeroSocio;
         TipoOrigen = tipoOrigen;
     }
+
+    public RequestValidarNumero(){}
 }
