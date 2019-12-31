@@ -4,10 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import com.example.mibanco.DI.BaseApplicacion;
 import com.example.mibanco.Entidades.Request.RequestValidarNumero;
 import com.example.mibanco.Entidades.Response.Response;
 import com.example.mibanco.Entidades.ValidaNumero;
-import com.example.mibanco.ws.apiSocio.ApiSocio;
 import com.example.mibanco.ws.apiSocio.ISocio;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,30 +31,55 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ImageView;
 
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    @Inject
     ISocio socioInterface;
+
     ImageView img ;
+    //FloatingActionButton fab;
+
+    private void InitDI(){
+        try {
+            ((BaseApplicacion)getApplication()).getRetrofitComponente().inject(this);
+        }catch (Exception ex){
+            Log.e("InitDI",ex.getMessage());
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
-
+        InitDI();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         img = findViewById(R.id.imageView2);
-        socioInterface = ApiSocio.getClient().create(ISocio.class);
+        //socioInterface = ApiSocio.getClient().create(ISocio.class);
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Log.d("MainActivity","Entra al click");
+                ValidarNumero(new RequestValidarNumero("666480", "Movil"));
+                /*
                 Call<Response<ValidaNumero>> call = socioInterface.ValidaNumero( new RequestValidarNumero("666480", "Movil"));
                 call.enqueue(new Callback<Response<ValidaNumero>>() {
                                  @Override
@@ -81,6 +106,7 @@ public class MainActivity extends AppCompatActivity
 
                         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                     */
             }
         });
 
@@ -164,5 +190,35 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void ValidarNumero(RequestValidarNumero requestValidarNumero){
+        socioInterface.ValidaNumero(requestValidarNumero).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::SuccessValidarNumero,this::ErrorValidarNumero);
+    }
+
+    private void SuccessValidarNumero(Response<ValidaNumero> validaNumeroResponse) {
+        try {
+            if(validaNumeroResponse.getEstatus() == 200)
+            {
+                try {
+                    Log.d("MainActivity", validaNumeroResponse.getData().getNombreSocio());
+                    img.setImageBitmap(StringToBitMap(validaNumeroResponse.getData().getImagenAntiphishing()));
+                }catch (Exception ex){
+                    Log.d("",ex.getMessage());
+                }
+            }
+        }catch (Exception ex){
+            Snackbar.make(img, ex.getMessage(), Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private void ErrorValidarNumero(Throwable throwable) {
+        try {
+            Snackbar.make(img, throwable.getMessage(), Snackbar.LENGTH_LONG).show();
+        }catch (Exception ex){
+            Log.d(this.getClass().getName(),ex.getMessage());
+        }
     }
 }

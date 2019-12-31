@@ -64,7 +64,7 @@
             android:text="Token virtual"
             android:textColor="#fff"
             android:alpha="0"
-            android:onClick="GoIniciarSesion"
+            android:onClick="GoToken"
             android:transitionName="btnTokenTransition"
             />
 

@@ -14,4 +14,9 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="Servidor">http://cmv8046</string>
+
+    <!--Mensajes de Snack Bar-->
+    <string name="msjErrorGenerico">Ocurrio un error inesperado.\nIntente más tarde</string>
+    <string name="msjErrorProcesarSolicitud">Ocurrio un error al procesar la solicitud.\nIntente más tarde</string>
+
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Sucursales"
-        android:id="@+id/bottomNavigationAlarmMenuId"
+        android:id="@+id/bottomNavigationSucursales"
         android:icon="@drawable/ic_pin_drop"/>
     <item android:title="Promociones"
-        android:id="@+id/bottomNavigationClockMenuId"
+        android:id="@+id/bottomNavigationPromociones"
         android:icon="@drawable/ic_local_offer"/>
     <item android:title="Contacto"
-        android:id="@+id/bottomNavigationTimerMenuId"
+        android:id="@+id/bottomNavigationContacto"
         android:icon="@drawable/ic_call_black"/>
 </menu>

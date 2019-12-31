@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPrincipal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundApp"
     tools:context=".Vistas.Login">
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,7 +59,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/contentForm"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/header"
             android:layout_marginTop="-40dp"
             android:layout_marginRight="20dp"
@@ -77,15 +76,18 @@
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/lblBienvenida"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="''Bienvenido a Mi Banco''"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccent"
                     android:textSize="20dp"
+                    android:alpha="0"
                     />
 
                 <EditText
+                    android:id="@+id/txtNumero"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center_vertical|center"
@@ -97,7 +99,19 @@
                     android:textColor="#222"
                     android:textColorHint="#aaa"
                     android:textSize="12dp"
+                    android:alpha="0"
                     />
+
+                <TextView
+                    android:id="@+id/labelErrorNumSocio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:text="El número de socio debe ser de 4 a 8 caracteres numéricos."
+                    android:textColor="@color/labelError"
+                    android:visibility="invisible"/>
 
                 <Button
                     android:id="@+id/btnContinuarLogin"
@@ -109,7 +123,8 @@
                     android:padding="10dp"
                     android:text="Continuar"
                     android:textColor="#fff"
-                    android:transitionName="btnSesionTransition" />
+                    android:transitionName="btnSesionTransition"
+                    android:onClick="OnValidarNumero"/>
 
                 <Button
                     android:id="@+id/btnToken"

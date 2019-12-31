@@ -61,9 +61,7 @@ public class Bienvenida extends AppCompatActivity {
         animationTop = AnimationUtils.loadAnimation(this,R.anim.fromtop);
         animationBottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
         animationFromLeft = AnimationUtils.loadAnimation(this,R.anim.fromleft);
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-        fadeIn.setDuration(1000);
+
 
         //Asignacion de animaciones
         imgLogo.setAnimation(animationTop);
@@ -116,7 +114,7 @@ public class Bienvenida extends AppCompatActivity {
 
     public void GoToken(View view){
         try {
-
+            IrActividad(this,MainActivity.class,null);
         }catch (Exception ex){
 
         }

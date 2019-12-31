@@ -2,15 +2,18 @@
 <resources>
 
     <!--Moonlit Asteroid-->
-    <!--
+
     <color name="colorPrimary">#2C5364</color>
     <color name="colorPrimaryDark">#203A43</color>
-    <color name="colorAccent">#0F2027</color>-->
+    <color name="colorAccent">#0F2027</color>
 
     <!--Little Leaf-->
-    <color name="colorPrimary">#76b703</color>
+    <!--<color name="colorPrimary">#76b703</color>
     <color name="colorPrimaryDark">#1e7e34</color>
-    <color name="colorAccent">#0F2027</color>
+    <color name="colorAccent">#0F2027</color>-->
+
+
     <color name="backgroundApp">#ECEEF0</color>
+    <color name="labelError">#fa163f</color>
 
 </resources>
