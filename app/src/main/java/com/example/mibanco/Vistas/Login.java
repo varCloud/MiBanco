@@ -5,11 +5,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -36,9 +43,16 @@ import javax.inject.Inject;
 public class Login extends AppCompatActivity {
 
     ConstraintLayout layoutPrincipal;
+    //contentValidaNumero
+    View contentValidaNumero;
     Button btnContinuar;
     EditText txtNumero;
     TextView lblBienvenida,labelErrorNumSocio;
+    ImageView imgLogo;
+
+    //contentLoginPass
+    View contentLoginPass;
+
 
     @Inject
     ISocio socioInterface;
@@ -67,10 +81,14 @@ public class Login extends AppCompatActivity {
     private  void InitCompontent(){
         //Creacion de UI
         layoutPrincipal = (ConstraintLayout) findViewById(R.id.layoutPrincipal);
+        contentValidaNumero = (View) findViewById(R.id.contentValidaNumero);
         btnContinuar = (Button)  findViewById(R.id.btnContinuarLogin);
         txtNumero = (EditText) findViewById(R.id.txtNumero);
         lblBienvenida = (TextView) findViewById(R.id.lblBienvenida);
         labelErrorNumSocio = (TextView) findViewById(R.id.labelErrorNumSocio);
+        imgLogo = (ImageView) findViewById(R.id.imgLogo);
+        //
+        contentLoginPass = (View) findViewById(R.id.contentLoginPass);
 
         //Asignacion de animaciones
         txtNumero.animate().alpha(1f).setDuration(1200);
@@ -104,6 +122,26 @@ public class Login extends AppCompatActivity {
         }
         return pattern.matcher(strNum).matches();
     }
+
+    private void IrActividad(Context contexto, Class actividad, ActivityOptions options){
+        Intent intent = new Intent(contexto, actividad);
+        if(options!=null) {
+            startActivity(intent,options.toBundle());
+        }else{
+            startActivity(intent);
+        }
+    }
+
+    public Bitmap StringToBitMap(String encodedImage) {
+        try {
+            byte[] decodedString = Base64.decode(encodedImage, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            return decodedByte;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
     //endregion FUNCIONES  GENERALES
 
     //region FUNCIONES
@@ -122,7 +160,8 @@ public class Login extends AppCompatActivity {
         try {
             if(validaNumeroResponse.getEstatus() == 200)
             {
-                //img.setImageBitmap(StringToBitMap(validaNumeroResponse.getData().getImagenAntiphishing()));
+                GoLoginPass();
+                imgLogo.setImageBitmap(StringToBitMap(validaNumeroResponse.getData().getImagenAntiphishing()));
             }else{
                 Snackbar.make(layoutPrincipal, validaNumeroResponse.getMensaje(), Snackbar.LENGTH_LONG).show();
             }
@@ -137,6 +176,14 @@ public class Login extends AppCompatActivity {
             Log.d(this.getClass().getName(),throwable.getMessage());
         }catch (Exception ex){
             Log.d(this.getClass().getName(),ex.getMessage());
+        }
+    }
+
+    public void GoLoginPass(){
+        try {
+            contentValidaNumero.animate().alpha(0);
+            contentLoginPass.setVisibility(View.VISIBLE);
+        }catch (Exception ex){
         }
     }
 
