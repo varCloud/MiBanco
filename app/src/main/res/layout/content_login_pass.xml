@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".Vistas.Login"
+    tools:showIn="@layout/content_valida_numero">
+
+
+    <TextView
+        android:id="@+id/lblSaludo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¡Hola!"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/lblNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="S******C******M******V"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/txtContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical|center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="Ingresa tu contraseña"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="#222"
+        android:textColorHint="#aaa"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/labelErrorNumSocio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="La contraseña debe ser de por lo menos 8 caracteres."
+        android:textAlignment="center"
+        android:textColor="@color/labelError"
+        android:textSize="12dp"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/btnContinuarLogin"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical|center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_bg_primary"
+        android:onClick="OnValidarNumero"
+        android:padding="10dp"
+        android:text="Continuar"
+        android:textColor="#fff"
+        android:transitionName="btnSesionTransition" />
+
+</LinearLayout>
